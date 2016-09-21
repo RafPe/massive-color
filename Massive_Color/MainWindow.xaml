@@ -1,0 +1,91 @@
+﻿<Controls:MetroWindow x:Class="Massive_Color.MainWindow"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        Title="Massive Color" Height="200" Width="400"
+                      Loaded="MainWindow_OnLoaded"
+                      Closing="MainWindow_OnClosing">
+    
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button Content="Settings" Name="Button_Settings" Click="Button_Settings_OnClick"/>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+
+    <Grid Name="Grid_Main">
+
+        <Grid.Background>
+            <ImageBrush ImageSource="Art/Back_01.jpg"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"></RowDefinition>
+           <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Name="TextBlock_StatusBar_1" Grid.Row="0" HorizontalAlignment="Center" 
+                   Margin="5" 
+                   Text="Not Connected" 
+                   FontSize="15" 
+                   Foreground="White"
+                   FontWeight="Bold"
+                   ></TextBlock>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+
+            <Button Name="ToggleButton_Start" Grid.Row="0" Width="70" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center"
+                          Margin="0, 10, 0, 0"
+                          Content="Start"
+                          Click="ToggleButton_Start_OnClick"/>
+
+            <!--TODO: Wlaczyc buttona kiedy uruchomimy pluginy-->
+            <Button Name="ToggleButton_ChooseMode" Grid.Row="0" Width="70" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center"
+                          Margin="10, 10, 0, 0"
+                          Content="Mode"
+                          Click="ToggleButton_Start_OnClick" IsEnabled="False" Visibility="Collapsed"/>
+        </StackPanel>
+
+
+        <StatusBar Grid.Row="1">
+            <StatusBarItem HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Name="TextBox_StatusBar_Bottom" HorizontalAlignment="Center" 
+                   Margin="0" 
+                   Text="Not licensed" 
+                   FontSize="15"                    
+                   FontWeight="Bold" Background="Transparent"></TextBlock>
+            </StatusBarItem>           
+        </StatusBar>
+
+            <tb:TaskbarIcon Grid.Row="0"
+                  IconSource="/Art/tv.ico"
+                  ToolTipText="Massive Color" Visibility="Visible">
+
+            <!-- Set a simple context menu  -->
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu
+                      Background="LightCoral">
+                        <MenuItem>
+                            <MenuItem.Header>
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                    <!-- ReSharper disable once InconsistentNaming -->
+                                <Slider Maximum="1" Minimum="0.1"
+                                        Orientation="Vertical" HorizontalAlignment="Center"
+                                        Height="100"
+                                        TickPlacement="BottomRight" 
+                                        TickFrequency=".1" 
+                                        IsSnapToTickEnabled="True" 
+                                        x:Name="Slider_Brightness" ValueChanged="Slider_Brightness_OnValueChanged"/>
+                                <TextBlock Text="Brightness"></TextBlock>
+                            </StackPanel>
+                            </MenuItem.Header>
+                        </MenuItem>
+                        <MenuItem Header="Exit" Name="MenuItem_Tray_Exit" Click="MenuItem_Tray_Exit_OnClick" />
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+
+        </tb:TaskbarIcon>
+
+    </Grid>
+</Controls:MetroWindow>

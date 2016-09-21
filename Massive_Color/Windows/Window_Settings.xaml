@@ -1,0 +1,446 @@
+﻿<controls:MetroWindow
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Massive_Color.Windows.Window_Settings"
+        Title="Settings" 
+        Height="475" 
+        Width="725"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        >
+
+    <!--Glowny grid wyswietlajacy ustawienia-->
+    <Grid Name="Grid_Main">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <!--Grid 0 / Tabmenu-->
+            <RowDefinition Height="10*"></RowDefinition>
+            <!--Grid 1 / Content-->
+            <RowDefinition Height="Auto"></RowDefinition>
+            <!--Grid 2 / Apply button-->
+            <RowDefinition Height="Auto"></RowDefinition>
+            <!--Grid 3 / Status bar -->
+        </Grid.RowDefinitions>
+
+        <Grid.Resources>
+            <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
+        </Grid.Resources>
+
+        <!--Nasz status bar wyswietlany na samym dole-->
+        <StatusBar Grid.Row="3">
+            <StatusBarItem HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Name="TextBlock_StatusBar_1" Text="Massive Color" FontSize="20" FontWeight="ExtraBlack" Margin="0,0,15,0"/>
+                    <TextBlock Name="TextBlock_StatusBar_2" Text="by RafTech" FontSize="20" FontStyle="Oblique"/>
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
+
+        <!--Menu tabulatorowane-->
+        <TabControl HorizontalAlignment="Center" Grid.Row="0" Margin="15" >
+            <TabItem Header="Graphics" Name="TabItem_Graphics" PreviewMouseDown="TabItem_Graphics_OnPreviewMouseDown"/>
+            <TabItem Header="AppSettings" Name="TabItem_AppSettings" PreviewMouseDown="TabItem_AppSettings_OnPreviewMouseDown"/>
+            <!--TODO: Wlaczyc Firmware view kiedy bedzie to przetestowane-->
+            <TabItem Header="Firmware" Name="TabItem_Firmware" PreviewMouseDown="TabItem_Firmware_OnPreviewMouseDown" Visibility="Collapsed" />
+            <!--TODO: Wlaczyc Plugins view kiedy bedzie to przetestowane-->
+            <TabItem Header="Plugins" Name="TabItem_Plugins" PreviewMouseDown="TabItem_Plugins_OnPreviewMouseDown" Visibility="Collapsed"/>
+            <TabItem Header="Licensing" Name="TabItem_Licensing" PreviewMouseDown="TabItem_Licensing_OnPreviewMouseDown"/>
+        </TabControl>
+
+        <!--Guzior do zapisu ustawien-->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+            <Button Content="Apply" Width="75" Margin="0,0,0,0" Grid.Row="2" Name="Button_apply_settings" Click="Button_apply_settings_OnClick" Visibility="Collapsed"></Button>
+        </StackPanel>
+
+        <!--StackPanel z ustawieniami grafiki-->
+        <StackPanel Name="StackPanel_Graphics" Grid.Row="1" Visibility="Collapsed">
+            <Grid x:Name="Grid_Channel_Settings">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    
+                    
+
+                    <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Vertical">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            
+                            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="10" Visibility="Collapsed">
+                                
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Text="R" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Margin="10"></TextBlock>
+                                    <controls:NumericUpDown HorizontalAlignment="Center" 
+							        VerticalAlignment="Center" 
+							        Name="NumericUpDown_Gamma_R"							
+							        Speedup="true"
+							        Minimum="0"
+                                    Maximum="3"
+                                    Interval=".1"
+                                    StringFormat="0.0"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="G" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Margin="10"></TextBlock>
+                                    <controls:NumericUpDown HorizontalAlignment="Center" 
+							        VerticalAlignment="Center" 
+							        Name="NumericUpDown_Gamma_G"							
+							        Speedup="true"
+							        Minimum="0"
+                                    Maximum="3"
+                                    Interval=".1"
+                                    StringFormat="0.0"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="B" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Margin="10"></TextBlock>
+                                    <controls:NumericUpDown HorizontalAlignment="Center" 
+							        VerticalAlignment="Center" 
+							        Name="NumericUpDown_Gamma_B"							
+							        Speedup="true"
+							        Minimum="0"
+                                    Maximum="3"
+                                    Interval=".1"
+                                    StringFormat="0.0"/>
+                                </StackPanel>
+
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="10">
+
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <TextBlock Text="Brightness" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Margin="10"></TextBlock>
+                                    <controls:NumericUpDown HorizontalAlignment="Center" 
+							        VerticalAlignment="Center" 
+							        Name="NumericUpDown_Brightness"							
+							        Speedup="true"
+							        Minimum="0.1"                                                            
+                                    Interval=".1"
+                                    Maximum="1"
+                                    StringFormat="0.0"
+                                    ValueChanged="NumericUpDown_Brightness_OnValueChanged"/>
+                                    
+                                </StackPanel>
+
+                            </StackPanel>
+
+                        </Grid>
+
+
+
+                    </StackPanel>
+
+
+
+
+
+                    <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Center" Margin="10">
+                        <!--Kontrola wartosci pixeli-->
+                        <Label Content="Pixel Control"></Label>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10">
+                            <Label Content="Treshold"></Label>
+                            <controls:NumericUpDown HorizontalAlignment="Center" 
+							VerticalAlignment="Center" 
+							Name="NumericUpDown_Pixel_Treshold"
+							Delay="500"
+							Speedup="true"
+							Minimum="0"                            
+                            ValueChanged="NumericUpDown_Pixel_Treshold_OnValueChanged"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                            <Label Content="Precision"></Label>
+                            <controls:NumericUpDown HorizontalAlignment="Center" 
+							VerticalAlignment="Center" 
+							Name="NumericUpDown_Pixel_Precision"
+							Delay="500"
+							Speedup="true"
+							Minimum="1"
+                            Maximum="20"
+                            ValueChanged="NumericUpDown_Pixel_Precision_OnValueChanged"         />
+                        </StackPanel>
+
+                    </StackPanel>
+
+                    <TextBlock Text="Channel numbers" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" FontFamily="Arial"/>
+                    <Grid Grid.Row="1" Grid.Column="0" x:Name="Grid_Number_Of_Channels">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Top"  Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="Right" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="Bottom" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Text="Left" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                        <controls:NumericUpDown HorizontalAlignment="Center" 
+							VerticalAlignment="Center" 
+							Grid.Row="0" Grid.Column="1"
+							Delay="500"
+							Speedup="true"
+							Minimum="0"
+                            Name="NumericUpDown_Channels_Top"
+                            ValueChanged="NumericUpDown_Channels_Top_OnValueChanged"
+                                        />
+
+                        <controls:NumericUpDown HorizontalAlignment="Center" 
+							VerticalAlignment="Center" 
+							Grid.Row="1" Grid.Column="1"
+							Delay="500"
+							Speedup="true"
+							Minimum="0"
+                            Name="NumericUpDown_Channels_Right"
+                            ValueChanged="NumericUpDown_Channels_Right_OnValueChanged"/>
+
+                        <controls:NumericUpDown HorizontalAlignment="Center" 
+							VerticalAlignment="Center" 
+							Grid.Row="2" Grid.Column="1"
+							Delay="500"
+							Speedup="true"
+							Minimum="0"
+                            Name="NumericUpDown_Channels_Bottom"
+                            ValueChanged="NumericUpDown_Channels_Bottom_OnValueChanged"/>
+
+                        <controls:NumericUpDown HorizontalAlignment="Center" 
+							VerticalAlignment="Center" 
+							Grid.Row="3" Grid.Column="1"
+							Delay="500"
+							Speedup="true"
+							Minimum="0"
+                            Name="NumericUpDown_Channels_Left"
+                            ValueChanged="NumericUpDown_Channels_Left_OnValueChanged"/>
+
+                    </Grid>
+
+                    <TextBlock Text="Channels properties" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold" FontFamily="Arial"/>
+                    <Grid Grid.Column="1" Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <DockPanel VerticalAlignment="Center" Margin="10" Grid.Row="0" Grid.Column="0" >
+                            <TextBox Text="{Binding Value, ElementName=Slider_Borders_X, UpdateSourceTrigger=PropertyChanged}" 
+								DockPanel.Dock="Right" TextAlignment="Right" 
+								Width="40"
+								Margin="5,0,0,0"/>
+                            <Slider Maximum="100" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" x:Name="Slider_Borders_X" ValueChanged="Slider_Borders_X_OnValueChanged"/>
+                        </DockPanel>
+                        <Label Grid.Row="0" Grid.Column="1" Content="Borders (%)" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <DockPanel VerticalAlignment="Center" Margin="10" Grid.Row="0" Grid.Column="2" >
+                            <TextBox Text="{Binding Value, ElementName=Slider_Borders_Y, UpdateSourceTrigger=PropertyChanged}" 
+								DockPanel.Dock="Right" TextAlignment="Right" 
+								Width="40"
+								Margin="5,0,0,0"/>
+                            <Slider Maximum="100" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" x:Name="Slider_Borders_Y" ValueChanged="Slider_Borders_Y_OnValueChanged" />
+                        </DockPanel>
+
+                        <DockPanel VerticalAlignment="Center" Margin="10" Grid.Row="1" Grid.Column="0" >
+                            <TextBox Text="{Binding Value, ElementName=Slider_Deepth_X, UpdateSourceTrigger=PropertyChanged}" 
+								DockPanel.Dock="Right" TextAlignment="Right" 
+								Width="40"
+								Margin="5,0,0,0"/>
+                            <Slider Maximum="100" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" x:Name="Slider_Deepth_X" ValueChanged="Slider_Deepth_X_OnValueChanged" />
+                        </DockPanel>
+                        <Label Grid.Row="1" Grid.Column="1" Content="Deepth (%)" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <DockPanel VerticalAlignment="Center" Margin="10" Grid.Row="1" Grid.Column="2" >
+                            <TextBox Text="{Binding Value, ElementName=Slider_Deepth_Y, UpdateSourceTrigger=PropertyChanged}" 
+								DockPanel.Dock="Right" TextAlignment="Right" 
+								Width="40"
+								Margin="5,0,0,0"/>
+                            <Slider Maximum="100" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" x:Name="Slider_Deepth_Y" ValueChanged="Slider_Deepth_Y_OnValueChanged" />
+                        </DockPanel>
+
+                        <DockPanel VerticalAlignment="Center" Margin="10" Grid.Row="2" Grid.Column="0" >
+                            <TextBox Text="{Binding Value, ElementName=Slider_Padding_X, UpdateSourceTrigger=PropertyChanged}" 
+								DockPanel.Dock="Right" TextAlignment="Right" 
+								Width="40"
+								Margin="5,0,0,0"/>
+                            <Slider Maximum="100" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" x:Name="Slider_Padding_X" ValueChanged="Slider_Padding_X_OnValueChanged"/>
+                        </DockPanel>
+                        <Label Grid.Row="2" Grid.Column="1" Content="Padding (%)" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <DockPanel VerticalAlignment="Center" Margin="10" Grid.Row="2" Grid.Column="2" >
+                            <TextBox Text="{Binding Value, ElementName=Slider_Padding_Y, UpdateSourceTrigger=PropertyChanged}" 
+								DockPanel.Dock="Right" TextAlignment="Right" 
+								Width="40"
+								Margin="5,0,0,0"/>
+                            <Slider Maximum="100" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True" x:Name="Slider_Padding_Y" ValueChanged="Slider_Padding_Y_OnValueChanged" />
+                        </DockPanel>
+
+                    </Grid>
+
+                </Grid>
+
+            </Grid>
+        </StackPanel>
+
+        <!--StackPanel z ustawieniami aplikacji-->
+        <StackPanel Name="StackPanel_AppSettings" Grid.Row="1" Visibility="Visible">
+            <Grid Name="Grid_AppSettings">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    
+                </Grid.ColumnDefinitions>
+
+                <Label Content="Application Autostart" FontSize="15" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                <Label Content="Application Autorun" FontSize="15" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                
+                <Label Content="Communication BaudRate" FontSize="15" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+
+                <CheckBox IsChecked="False" Name="CheckBox_appAutoStart" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Unchecked="CheckBox_appAutoStart_OnUnchecked" Checked="CheckBox_appAutoStart_OnChecked"></CheckBox>
+                <CheckBox IsChecked="False" Name="CheckBox_appAutoRun" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Unchecked="CheckBox_appAutoRun_OnUnchecked" Checked="CheckBox_appAutoRun_OnChecked"></CheckBox>
+                <TextBox  Margin="10" Grid.Row="2" Grid.Column="1" Width="100" Name="TextBox_SerialBaudRate" PreviewTextInput="TextBox_SerialBaudRate_OnPreviewTextInput"
+                         controls:TextBoxHelper.IsWaitingForData="True"
+                         ToolTip="Serial communication speed"/>
+
+            </Grid>
+        </StackPanel>
+
+        <!--StackPanel z ustawieniami firmware-->
+        <StackPanel Name="StackPanel_Firmware" Grid.Row="1" Visibility="Collapsed">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="4*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>                               
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Name="TextBlock_Firmware_Version" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="Firmware version: 0.0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               FontSize="15" Margin="10"></TextBlock>
+
+                <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                    <Label Name="Label_Firmware_Upload" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Content="Status:" FontWeight="Bold"></Label>
+                    <TextBlock Name="TextBlock_FirmwareUpload_Status" Text="Idlesss" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"></TextBlock>
+                </StackPanel>
+
+                <StackPanel Name="StackPanel_Firmware_Controls" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+                    <Button Content="Choose file" Width="75"  Name="Button_Firmware_ChooseFile" Margin="10"></Button>
+                    <Button Content="Upload" Width="75"  Name="Button_Firmware_Upload" Margin="10"></Button>
+                </StackPanel>
+
+                <ProgressBar Name="ProgressBar_Firmware_Upload" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="15" Height="30" Width="300"></ProgressBar>
+
+            </Grid>
+        </StackPanel>
+        
+        <!--StackPanel z informacja dotyczaca licencji-->        
+        <StackPanel Name="StackPanel_License" Grid.Row="1" Visibility="Collapsed">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock  Name="TextBlock_License_Header_Info" 
+                            FontSize="15" 
+                            HorizontalAlignment="Center" 
+                            Text="License information" 
+                            Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Bold" Margin="10" FontFamily="Arial"
+                            ></TextBlock>
+                
+                <!--Licencja - Name -->
+                <TextBlock  Name="TextBlock_License_Header_Name" 
+                            FontSize="15" 
+                            HorizontalAlignment="Center" 
+                            Text="Name" 
+                            Grid.Row="1" Grid.Column="0" FontWeight="Bold" Margin="10" FontFamily="Arial"
+                            ></TextBlock>
+                <TextBlock  Name="TextBlock_License_Name_Value" 
+                            FontSize="15" 
+                            HorizontalAlignment="Center" 
+                            Text="Not available" 
+                            Grid.Row="1" Grid.Column="1" Margin="10" FontFamily="Arial"
+                            ></TextBlock>
+
+                <!--Licencja - Email -->
+                <TextBlock  Name="TextBlock_License_Email_Header" 
+                            FontSize="15" 
+                            HorizontalAlignment="Center" 
+                            Text="Email" 
+                            Grid.Row="2" Grid.Column="0" FontWeight="Bold" Margin="10" FontFamily="Arial"
+                            ></TextBlock>
+                <TextBlock  Name="TextBlock_License_Email_Value" 
+                            FontSize="15" 
+                            HorizontalAlignment="Center" 
+                            Text="Not available" 
+                            Grid.Row="2" Grid.Column="1" Margin="10" FontFamily="Arial"
+                            ></TextBlock>
+
+                <!--Licencja - Address -->
+                <TextBlock  Name="TextBlock_License_Address_Header" 
+                            FontSize="15" 
+                            HorizontalAlignment="Center" 
+                            Text="Address" 
+                            Grid.Row="3" Grid.Column="0" FontWeight="Bold" Margin="10" FontFamily="Arial"
+                            ></TextBlock>
+                <TextBlock  Name="TextBlock_License_Address_Value" 
+                            FontSize="15" 
+                            HorizontalAlignment="Center" 
+                            Text="Not available" 
+                            Grid.Row="3" Grid.Column="1" Margin="10" FontFamily="Arial"
+                            ></TextBlock>
+
+
+            </Grid>
+        </StackPanel>
+
+
+
+</Grid>
+</controls:MetroWindow>
